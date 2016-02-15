@@ -1,0 +1,5 @@
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {2}Analytical Work}{3}
+\contentsline {section}{\numberline {3}Numerical Work}{3}
+\contentsline {subsection}{\numberline {3.1}Volumeless Entity: The Spring Singularity}{4}
+\contentsline {section}{\numberline {4}Discussion}{5}
