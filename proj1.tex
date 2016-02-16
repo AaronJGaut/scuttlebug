@@ -54,7 +54,7 @@
 
 \section{Introduction}
 In this paper we will model the two-mass oscillator system.
-Consider the diagram shown in Figure 1.
+Consider the diagram shown in Figure~\ref{sketch}.
 
 \begin{figure}[h!]
 \centering \includegraphics[scale=0.7]{sketch}
@@ -83,7 +83,7 @@ From here, the following can be shown:
 
 In the following sections we will assume these initial conditions:
 $$\begin{matrix}
-x_1(0) = \alpha, & \dfrac{dx_1}{dt}(0) = \gamma \\ &\\
+x_1(0) = \alpha, & \dfrac{dx_1}{dt}(0) = \gamma, \\ &\\
 x_2(0) = \beta, & \dfrac{dx_2}{dt}(0) = \delta.
 \end{matrix}$$
 \section{Analytical Work}
@@ -122,12 +122,72 @@ x_2-x_1-L = \left(\beta - \alpha - L\right)\cos{\left(\omega t\right)}+\frac{\de
 
 \section{Numerical Work}
 We used the MATLAB function \texttt{fsolve}, a nonlinear implicit equation solver, together with the analytically derived equations (3) and (4), to explore the system.
-We used two sets of initial conditions.
+We also determined the center of mass with the formula
+$$
+x_{cm}(t) = \frac{m_1x_1(t) + m_2x_2(t)}{m_1 + m_2}.
+$$
 
 \subsection{Sanity Checks}
-First we will verify our numerical work by 
+First we will verify our numerical work by testing with initial conditions that have intuitive outcomes. For example if the initial conditions have symmetry then so should $x_1$ and $x_2$. We tested this using the parameters
+\begin{center}
 
-\subsection{Volumeless Entity: The Spring Singularity}
+\begin{tabular}{| c | c | c | c | c | c | c | c |}
+
+\hline
+
+$L$ & $\alpha$ & $\beta$ & $\gamma$ & $\delta$ & $m_1$ & $m_2$ & $k$ \\
+
+\hline
+
+ 10 & 0 & 18 & 0 & 0 & 10 & 10 & 3\\
+
+\hline
+
+\end{tabular}
+
+\end{center}
+
+The notable parameters in this case are $\gamma, \delta, m_1, $ and $m_2$.
+Both objects have zero initial velocity, and the objects have equal mass.
+The result can be seen in Figure~\ref{sanity1}.
+The two objects oscillate symmetrically, maintaining equal distance from the center of mass.
+This matches our intuition.
+
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.3]{sanity1}
+\caption{\label{sanity1} Symmetric motion with zero initial velocity}
+\end{figure}
+
+Another predictable case to consider is one where the spring is initially at equilibrium, and the masses have equal initial velocity.
+Since both masses will slide in the same direction at the same speed, the spring will remain at equilibrium. As long as the spring remains at equilibrium it will not apply force on either mass, and thus both masses will continue to slide with their initial velocity.
+We tested this with the parameters
+
+\begin{center}
+
+\begin{tabular}{| c | c | c | c | c | c | c | c |}
+
+\hline
+
+$L$ & $\alpha$ & $\beta$ & $\gamma$ & $\delta$ & $m_1$ & $m_2$ & $k$ \\
+
+\hline
+
+ 10 & 0 & 10 & 1 & 1 & 2 & 10 & 3\\
+
+\hline
+
+\end{tabular}
+
+\end{center}
+
+These parameters lead to the linear motion case since they meet the following constraints:
+
+\begin{align*}
+\beta - \alpha - L &= 0,\\
+\delta - \gamma &= 0.
+\end{align*}
+
+\subsection{The Spring Singularity}
 In this section we will explore what happens when we choose a set of initial conditions that maximizes the displacement of each individual mass.
 When this happens the two curves can be seen touching at a single point along the center of mass line.
 This is not physically possible because it implies that the spring has popped out of existence or has phased into the two masses.
@@ -162,9 +222,16 @@ $L$ & $\alpha$ & $\beta$ & $\gamma$ & $\delta$ & $m_1$ & $m_2$ & $k$ \\
 
 we then get a plot that looks like: \\
 
-\includegraphics[scale=0.3]{spring_sing}
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.3]{spring_sing}
+\caption{\label{singularity}One example of the spring singularity}
+\end{figure}
+
 
 
 \section{Discussion}
+
+\section{Appendix}
+
 
 \end{document}  
