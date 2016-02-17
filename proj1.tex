@@ -180,11 +180,13 @@ $L$ & $\alpha$ & $\beta$ & $\gamma$ & $\delta$ & $m_1$ & $m_2$ & $k$ \\
 
 \end{center}
 
-These parameters lead to the linear motion case since they meet the constraints
+These parameters lead to the linear motion case.
+
+The center is mass is also linear but closer to $x_2$ since $m_2$ is larger than $m_1$. This set of initial conditions is interesting because its constraints,
 
 \begin{align*}
 \beta - \alpha - L &= 0,\\
-\delta - \gamma &= 0.
+\delta - \gamma &= 0,
 \end{align*}
 
 The plot resulting from these parameters is shown in Figure~\ref{sanity2}
@@ -193,6 +195,8 @@ The plot resulting from these parameters is shown in Figure~\ref{sanity2}
 \centering \includegraphics[scale=0.3]{sanity1}
 \caption{\label{sanity2} The linear motion case}
 \end{figure}
+
+correspond to the initial conditions $z(0)=0$ and $\dfrac{dz}{dt}(0) = 0$. Since $z$ obeys simple harmonic motion, this is the case where $z$ is constant 0.
 
 \subsection{The Spring Singularity}
 In this section we will explore what happens when we choose a set of initial conditions that maximizes the displacement of each individual mass.
