@@ -158,7 +158,7 @@ This matches our intuition.
 \caption{\label{sanity1} Symmetric motion with zero initial velocity}
 \end{figure}
 
-Another predictable case to consider is one where the spring is initially at equilibrium, and the masses have equal initial velocity.
+Another predictable case to consider is one where the spring is initially at equilibrium ($\beta - \alpha - L = 0$), and the masses have equal initial velocity ($\delta-\gamma=0$).
 Since both masses will slide in the same direction at the same speed, the spring will remain at equilibrium. As long as the spring remains at equilibrium it will not apply force on either mass, and thus both masses will continue to slide with their initial velocity.
 We tested this with the parameters
 
@@ -180,12 +180,19 @@ $L$ & $\alpha$ & $\beta$ & $\gamma$ & $\delta$ & $m_1$ & $m_2$ & $k$ \\
 
 \end{center}
 
-These parameters lead to the linear motion case since they meet the following constraints:
+These parameters lead to the linear motion case since they meet the constraints
 
 \begin{align*}
 \beta - \alpha - L &= 0,\\
 \delta - \gamma &= 0.
 \end{align*}
+
+The plot resulting from these parameters is shown in Figure~\ref{sanity2}
+
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.3]{sanity1}
+\caption{\label{sanity2} The linear motion case}
+\end{figure}
 
 \subsection{The Spring Singularity}
 In this section we will explore what happens when we choose a set of initial conditions that maximizes the displacement of each individual mass.
