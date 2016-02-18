@@ -8,6 +8,8 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 
+\usepackage{mcode}
+
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 
 \title{A Two-Mass Oscillator}
@@ -245,6 +247,60 @@ we then get a plot that looks like: \\
 \section{Discussion}
 
 \section{Appendix}
+\subsection{MATLAB Code}
+\begin{lstlisting}
+clear all
+close all
 
+% MODEL PARAMETERS
+m_1 = 2;
+m_2 = 10;
+L = 10;
+k = 3;
+alpha = 0; %x_1(0)
+beta = 10; %x_2(0)
+gamma = 1; %dx_1/dt(0)
+delta = 1; %dx_2/dt(0)
+
+% PLOT PARAMETERS
+cm_flag = true;
+t_values = linspace(0,25);
+
+% COMPUTATIONS
+w = sqrt(k*(1/m_1 + 1/m_2));
+F = @(x, t) [m_1*x(1) + m_2*x(2) - (m_1*gamma + m_2*delta)*t - m_1*alpha - m_2*beta
+    x(2) - x(1) - L - (beta - alpha - L)*cos(w*t)-((delta-gamma)/w)*sin(w*t)];
+
+x_0 = [alpha;beta];
+x_values = zeros(length(t_values), 2);
+
+for i = 1 : length(t_values)
+    t = t_values(i);
+    x = fsolve(@(x) F(x, t), x_0);
+    x_0 = x;
+    x_values(i,:) = x';
+end
+
+% PLOTTING
+hold on
+plot(t_values, x_values(:,1), t_values, x_values(:,2), 'linewidth', 2)
+
+if cm_flag
+   cm = (m_1*x_values(:,1) + m_2*x_values(:,2))/(m_1 + m_2);
+   plot(t_values, cm, '--r');
+end
+hold off
+
+set(gca,'FontSize',24);
+title('Position of Mass With Respect to Time')
+xlabel('Time')
+ylabel('Position')
+
+if cm_flag
+   legend('x_1', 'x_2', 'Center of Mass') 
+else
+   legend('x_1', 'x_2');
+end
+\end{lstlisting}
 
 \end{document}  
