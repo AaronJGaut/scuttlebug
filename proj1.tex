@@ -8,13 +8,15 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 
+\usepackage[numbered]{mcode}
+
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 
 \title{A Two-Mass Oscillator}
 \setlength\parindent{0pt}
 
 \begin{document}
-
+\frenchspacing
 \begin{titlepage}
 		\begin{center}
 			\includegraphics[scale=0.2]{logo}\\[1cm]
@@ -77,8 +79,8 @@ m_2 \frac{d^2x_2}{dt^2} &= -k(x_2 - x_1 - L). \\
 
 From here, the following can be shown:
 \begin{align}
-&\frac{d^2}{dt^2}(m_1x_1 + m_2x_2) = 0, \\
-&\frac{d^2z}{dt^2} = -k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)z \text{, \;where } z = x_2-x_1-L,
+&\frac{d^2}{dt^2}(m_1x_1 + m_2x_2) = 0, \label{eq:1}\\
+&\frac{d^2z}{dt^2} = -k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)z \text{, \;where } z = x_2-x_1-L. \label{eq:2}
 \end{align}
 
 In the following sections we will assume these initial conditions:
@@ -87,7 +89,7 @@ x_1(0) = \alpha, & \dfrac{dx_1}{dt}(0) = \gamma, \\ &\\
 x_2(0) = \beta, & \dfrac{dx_2}{dt}(0) = \delta.
 \end{matrix}$$
 \section{Analytical Work}
-We will now solve equation (1) analytically by integrating twice.
+We will now solve equation~(\ref{eq:1})  analytically by integrating twice.
 \begin{align*}
 &\frac{d^2}{dt^2}(m_1x_1 + m_2x_2) = 0 \\
 \implies & \frac{d}{dt}(m_1x_1 + m_2x_2) = C\\
@@ -101,15 +103,16 @@ m_1\gamma + m_2\delta &= C,
 \end{align*}
 and thus,
 \begin{equation}
+\label{eq:3}
 m_1x_1 + m_2x_2 = (m_1\gamma + m_2\delta)t + m_1\alpha + m_2\beta.
 \end{equation}
 
-Now, we will solve equation (2) using an eigenvalue approach.
+Now, we will solve equation~(\ref{eq:2}) using an eigenvalue approach.
 If we do this then we will find that the roots of the characteristic polynomial are:
 
-$$r = \pm \sqrt{k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)}i$$
+$$r = \pm i\sqrt{k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)}$$
 
-We will let $\displaystyle{\omega = \sqrt{k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)}}$. This implies that the the general solution to equation (2) is:
+We will let $\displaystyle{\omega = \sqrt{k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)}}$. This implies that the the general solution to equation~(\ref{eq:2}) is:
 
 $$z(t) = c_1\cos{(\omega t)}+c_2\sin{(\omega t)}$$
 
@@ -117,17 +120,18 @@ We will now impose the initial conditions in order to find $c_1$ and $c_2$.
 We will also back-substitute $x_1$ and $x_2$ into the equation, which results in:
 
 \begin{equation}
-x_2-x_1-L = \left(\beta - \alpha - L\right)\cos{\left(\omega t\right)}+\frac{\delta - \gamma}{\omega}\sin{(\omega t)}
+\label{eq:4}
+z = x_2-x_1-L = \left(\beta - \alpha - L\right)\cos{\left(\omega t\right)}+\frac{\delta - \gamma}{\omega}\sin{(\omega t)}
 \end{equation}
 
 \section{Numerical Work}
-We used the MATLAB function \texttt{fsolve}, a nonlinear implicit equation solver, together with the analytically derived equations (3) and (4), to explore the system.
+We used the MATLAB function \texttt{fsolve}, a nonlinear implicit equation solver, together with the analytically derived equations~(\ref{eq:3}) and (\ref{eq:4}), to explore the system.
 We also determined the center of mass with the formula
 $$
 x_{cm}(t) = \frac{m_1x_1(t) + m_2x_2(t)}{m_1 + m_2}.
 $$
 
-\subsection{Sanity Checks}
+\subsection{Symmetric Motion}
 First we will verify our numerical work by testing with initial conditions that have intuitive outcomes.
 For example if the initial conditions have symmetry then so should $x_1$ and $x_2$.
 We tested this using the parameters
@@ -160,6 +164,7 @@ This matches our intuition.
 \caption{\label{sanity1} Symmetric motion with zero initial velocity}
 \end{figure}
 
+\subsection{Linear Motion}
 Another predictable case to consider is one where the spring is initially at equilibrium ($\beta - \alpha - L = 0$), and the masses have equal initial velocity ($\delta-\gamma=0$).
 Since both masses will slide in the same direction at the same speed, the spring will remain at equilibrium.
 As long as the spring remains at equilibrium it will not apply force on either mass, and thus both masses will continue to slide with their initial velocity.
@@ -188,9 +193,8 @@ $L$ & $\alpha$ & $\beta$ & $\gamma$ & $\delta$ & $m_1$ & $m_2$ & $k$ \\
 \caption{\label{sanity2} The linear motion case}
 \end{figure}
 
-These parameters lead to the linear motion case.
 The plot resulting from these parameters is shown in Figure~\ref{sanity2}.
-The center of mass is also linear but closer to $x_2$ since $m_2$ is larger than $m_1$.
+The position of the center of mass is also linear but is closer to $x_2$ since $m_2$ is larger than $m_1$.
 This set of initial conditions is interesting because its constraints,
 
 \begin{align*}
@@ -199,7 +203,7 @@ This set of initial conditions is interesting because its constraints,
 \end{align*}
 
 correspond to the initial conditions $z(0)=0$ and $\dfrac{dz}{dt}(0) = 0$.
-Since $z$ obeys simple harmonic motion, this is the case where $z$ is constant 0.
+As shown in Equation~(\ref{eq:4}), $z(t)$ obeys simple harmonic motion, so this is simply the case where $z(t)$ is constant 0.
 
 \subsection{The Spring Singularity}
 Consider a situation in which the two masses touch at a single point along the center of mass line periodically.
@@ -277,6 +281,57 @@ Notice that $\displaystyle{\frac{1}{\omega^2}}=\frac{1}{k}\left(\frac{m_1m_2}{m_
 $$\frac{1}{\omega^2}\left(\frac{dz}{dt}\right)^2+z^2=L^2$$
 
 This result is great because it tells that the $L^2$ is conserved through this system and it also tells that the at $z=0$ we reach a maximum velocity of $v_{max}=L\omega$.
-\section{Appendix}
+\newpage
+\section{Appendix: MATLAB Code}
+\vspace{-0.2in}
+\begin{lstlisting}
+% MODEL PARAMETERS
+m_1 = 2;
+m_2 = 10;
+L = 10;
+k = 3;
+alpha = 0; %x_1(0)
+beta = 10; %x_2(0)
+gamma = 1; %dx_1/dt(0)
+delta = 1; %dx_2/dt(0)
+
+% PLOT PARAMETERS
+cm_flag = true;
+t_values = linspace(0,25);
+
+% COMPUTATIONS
+w = sqrt(k*(1/m_1 + 1/m_2));
+F = @(x, t) [m_1*x(1) + m_2*x(2) - (m_1*gamma + m_2*delta)*t - m_1*alpha - m_2*beta
+    x(2) - x(1) - L - (beta - alpha - L)*cos(w*t)-((delta-gamma)/w)*sin(w*t)];
+
+x_0 = [alpha;beta];
+x_values = zeros(length(t_values), 2);
+
+for i = 1 : length(t_values)
+    t = t_values(i);
+    x = fsolve(@(x) F(x, t), x_0);
+    x_0 = x;
+    x_values(i,:) = x';
+end
+
+% PLOTTING
+hold on
+plot(t_values, x_values(:,1), t_values, x_values(:,2), 'linewidth', 2)
+if cm_flag
+   cm = (m_1*x_values(:,1) + m_2*x_values(:,2))/(m_1 + m_2);
+   plot(t_values, cm, '--r');
+end
+hold off
+
+set(gca,'FontSize',24);
+title('Position of Mass With Respect to Time')
+xlabel('Time')
+ylabel('Position')
+if cm_flag
+   legend('x_1', 'x_2', 'Center of Mass') 
+else
+   legend('x_1', 'x_2');
+end
+\end{lstlisting}
 
 \end{document}  
