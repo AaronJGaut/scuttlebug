@@ -8,7 +8,7 @@
 \usepackage{amssymb}
 \usepackage{amsmath}
 
-\usepackage{mcode}
+\usepackage[numbered]{mcode}
 
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 
@@ -80,7 +80,7 @@ m_2 \frac{d^2x_2}{dt^2} &= -k(x_2 - x_1 - L). \\
 From here, the following can be shown:
 \begin{align}
 &\frac{d^2}{dt^2}(m_1x_1 + m_2x_2) = 0, \label{eq:1}\\
-&\frac{d^2z}{dt^2} = -k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)z \text{, \;where } z = x_2-x_1-L, \label{eq:2}
+&\frac{d^2z}{dt^2} = -k\left(\frac{1}{m_1}+\frac{1}{m_2}\right)z \text{, \;where } z = x_2-x_1-L. \label{eq:2}
 \end{align}
 
 In the following sections we will assume these initial conditions:
@@ -121,7 +121,7 @@ We will also back-substitute $x_1$ and $x_2$ into the equation, which results in
 
 \begin{equation}
 \label{eq:4}
-x_2-x_1-L = \left(\beta - \alpha - L\right)\cos{\left(\omega t\right)}+\frac{\delta - \gamma}{\omega}\sin{(\omega t)}
+z = x_2-x_1-L = \left(\beta - \alpha - L\right)\cos{\left(\omega t\right)}+\frac{\delta - \gamma}{\omega}\sin{(\omega t)}
 \end{equation}
 
 \section{Numerical Work}
@@ -131,7 +131,7 @@ $$
 x_{cm}(t) = \frac{m_1x_1(t) + m_2x_2(t)}{m_1 + m_2}.
 $$
 
-\subsection{Sanity Checks}
+\subsection{Symmetric Motion}
 First we will verify our numerical work by testing with initial conditions that have intuitive outcomes.
 For example if the initial conditions have symmetry then so should $x_1$ and $x_2$.
 We tested this using the parameters
@@ -164,6 +164,7 @@ This matches our intuition.
 \caption{\label{sanity1} Symmetric motion with zero initial velocity}
 \end{figure}
 
+\subsection{Linear Motion}
 Another predictable case to consider is one where the spring is initially at equilibrium ($\beta - \alpha - L = 0$), and the masses have equal initial velocity ($\delta-\gamma=0$).
 Since both masses will slide in the same direction at the same speed, the spring will remain at equilibrium.
 As long as the spring remains at equilibrium it will not apply force on either mass, and thus both masses will continue to slide with their initial velocity.
@@ -192,9 +193,8 @@ $L$ & $\alpha$ & $\beta$ & $\gamma$ & $\delta$ & $m_1$ & $m_2$ & $k$ \\
 \caption{\label{sanity2} The linear motion case}
 \end{figure}
 
-These parameters lead to the linear motion case.
 The plot resulting from these parameters is shown in Figure~\ref{sanity2}.
-The center of mass is also linear but closer to $x_2$ since $m_2$ is larger than $m_1$.
+The position of the center of mass is also linear but is closer to $x_2$ since $m_2$ is larger than $m_1$.
 This set of initial conditions is interesting because its constraints,
 
 \begin{align*}
@@ -203,7 +203,7 @@ This set of initial conditions is interesting because its constraints,
 \end{align*}
 
 correspond to the initial conditions $z(0)=0$ and $\dfrac{dz}{dt}(0) = 0$.
-Since $z$ obeys simple harmonic motion, this is the case where $z$ is constant 0.
+As shown in Equation~(\ref{eq:4}), $z(t)$ obeys simple harmonic motion, so this is simply the case where $z(t)$ is constant 0.
 
 \subsection{The Spring Singularity}
 Consider a situation in which the two masses touch at a single point along the center of mass line periodically.
@@ -247,13 +247,10 @@ we then get a plot that looks like: \\
 
 
 \section{Discussion}
-
-\section{Appendix}
-\subsection{MATLAB Code}
+\newpage
+\section{Appendix: MATLAB Code}
+\vspace{-0.2in}
 \begin{lstlisting}
-clear all
-close all
-
 % MODEL PARAMETERS
 m_1 = 2;
 m_2 = 10;
@@ -286,7 +283,6 @@ end
 % PLOTTING
 hold on
 plot(t_values, x_values(:,1), t_values, x_values(:,2), 'linewidth', 2)
-
 if cm_flag
    cm = (m_1*x_values(:,1) + m_2*x_values(:,2))/(m_1 + m_2);
    plot(t_values, cm, '--r');
@@ -297,7 +293,6 @@ set(gca,'FontSize',24);
 title('Position of Mass With Respect to Time')
 xlabel('Time')
 ylabel('Position')
-
 if cm_flag
    legend('x_1', 'x_2', 'Center of Mass') 
 else
