@@ -128,7 +128,9 @@ x_{cm}(t) = \frac{m_1x_1(t) + m_2x_2(t)}{m_1 + m_2}.
 $$
 
 \subsection{Sanity Checks}
-First we will verify our numerical work by testing with initial conditions that have intuitive outcomes. For example if the initial conditions have symmetry then so should $x_1$ and $x_2$. We tested this using the parameters
+First we will verify our numerical work by testing with initial conditions that have intuitive outcomes.
+For example if the initial conditions have symmetry then so should $x_1$ and $x_2$.
+We tested this using the parameters
 \begin{center}
 
 \begin{tabular}{| c | c | c | c | c | c | c | c |}
@@ -159,7 +161,8 @@ This matches our intuition.
 \end{figure}
 
 Another predictable case to consider is one where the spring is initially at equilibrium ($\beta - \alpha - L = 0$), and the masses have equal initial velocity ($\delta-\gamma=0$).
-Since both masses will slide in the same direction at the same speed, the spring will remain at equilibrium. As long as the spring remains at equilibrium it will not apply force on either mass, and thus both masses will continue to slide with their initial velocity.
+Since both masses will slide in the same direction at the same speed, the spring will remain at equilibrium.
+As long as the spring remains at equilibrium it will not apply force on either mass, and thus both masses will continue to slide with their initial velocity.
 We tested this with the parameters
 
 \begin{center}
@@ -180,27 +183,26 @@ $L$ & $\alpha$ & $\beta$ & $\gamma$ & $\delta$ & $m_1$ & $m_2$ & $k$ \\
 
 \end{center}
 
-These parameters lead to the linear motion case.
+\begin{figure}[h!]
+\centering \includegraphics[scale=0.3]{sanity2}
+\caption{\label{sanity2} The linear motion case}
+\end{figure}
 
-The center is mass is also linear but closer to $x_2$ since $m_2$ is larger than $m_1$. This set of initial conditions is interesting because its constraints,
+These parameters lead to the linear motion case.
+The plot resulting from these parameters is shown in Figure~\ref{sanity2}.
+The center of mass is also linear but closer to $x_2$ since $m_2$ is larger than $m_1$.
+This set of initial conditions is interesting because its constraints,
 
 \begin{align*}
 \beta - \alpha - L &= 0,\\
 \delta - \gamma &= 0,
 \end{align*}
 
-The plot resulting from these parameters is shown in Figure~\ref{sanity2}
-
-\begin{figure}[h!]
-\centering \includegraphics[scale=0.3]{sanity1}
-\caption{\label{sanity2} The linear motion case}
-\end{figure}
-
-correspond to the initial conditions $z(0)=0$ and $\dfrac{dz}{dt}(0) = 0$. Since $z$ obeys simple harmonic motion, this is the case where $z$ is constant 0.
+correspond to the initial conditions $z(0)=0$ and $\dfrac{dz}{dt}(0) = 0$.
+Since $z$ obeys simple harmonic motion, this is the case where $z$ is constant 0.
 
 \subsection{The Spring Singularity}
-In this section we will explore what happens when we choose a set of initial conditions that maximizes the displacement of each individual mass.
-When this happens the two curves can be seen touching at a single point along the center of mass line.
+Consider a situation in which the two masses touch at a single point along the center of mass line periodically.
 This is not physically possible because it implies that the spring has popped out of existence or has phased into the two masses.
 Even though it is not possible it is still interesting to look at and makes a really pretty picture.
 It turns out that it is a little bit difficult to find the correct constants for this to happen because we need the total maximum amplitude of each curve to be $L$, which would mean solving this equation for each constant:
