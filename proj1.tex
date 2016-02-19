@@ -70,7 +70,7 @@ The first object has mass $m_1$ and is positioned at $x_1$.
 For the second mass, $m_2$ and $x_2$ are defined similarly.
 The spring constant is determined by the parameter $k$, and the unstretched length of the spring is $L$.
 
-The displacement by which the spring is stretch is given by $x_2 - x_1 -L$.
+The displacement by which the spring is stretched is given by $x_2 - x_1 -L$.
 Therefore, by Hooke's Law, we can determine the acceleration of each mass,
 \begin{align*}
 m_1 \frac{d^2x_1}{dt^2} &= k(x_2 - x_1 - L), \\
@@ -211,11 +211,11 @@ This is not physically possible because it implies that the spring has popped ou
 Even though it is not possible it is still interesting to look at and makes a really pretty picture.
 It turns out that it is a little bit difficult to find the correct constants for this to happen because we need the total maximum amplitude of each curve to be $L$, which would mean solving this equation for each constant:
 
-$$\sqrt{(\beta - \alpha -L)^2 + \left(\frac{\delta - \gamma}{\omega}\right)^2}=L$$
+$$\sqrt{(\beta - \alpha -L)^2 + \left(\frac{\delta - \gamma}{\omega}\right)^2}=L.$$
 
 This is incredibly difficult, but we can impose some requirements that makes this a simpler task such as making one of the terms under the square root $0$:
 
-$$\delta - \gamma = 0 \implies \beta - \alpha = 2L$$
+$$\dfrac{\delta - \gamma}{\omega} = 0 \implies \beta - \alpha = 2L$$
 
 If we do this using the parameters
 
@@ -280,7 +280,7 @@ Notice that $\displaystyle{\frac{1}{\omega^2}}=\frac{1}{k}\left(\frac{m_1m_2}{m_
 
 $$\frac{1}{\omega^2}\left(\frac{dz}{dt}\right)^2+z^2=L^2$$
 
-This result is great because it tells that the $L^2$ is conserved through this system and it also tells that the at $z=0$ we reach a maximum velocity of $v_{max}=L\omega$.
+This surprisingly simple result is great because it tells us that a total of $L^2$ is conserved through this system. It also says that at $z=0$, $\dfrac{dz}{dt}$ reaches a maximum of $L\omega$.
 \newpage
 \section{Appendix: MATLAB Code}
 \vspace{-0.2in}
